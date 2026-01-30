@@ -1,5 +1,6 @@
 "use client";
 import { productsDummyData, userDummyData } from "@/assets/assets";
+import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -67,6 +68,7 @@ export const AppContextProvider = (props) => {
     return Math.floor(totalAmount * 100) / 100;
   };
 
+  const user = useUser();
   useEffect(() => {
     fetchProductData();
   }, []);
@@ -90,6 +92,7 @@ export const AppContextProvider = (props) => {
     updateCartQuantity,
     getCartCount,
     getCartAmount,
+    user
   };
 
   return (
